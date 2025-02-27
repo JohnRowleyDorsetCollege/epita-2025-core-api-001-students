@@ -2,9 +2,9 @@ function init() {
     console.log('init');
 
     // Event listener for form submission
-    // document.getElementById("studentForm").addEventListener("submit", addStudent);
+    document.getElementById("studentForm").addEventListener("submit", addStudent);
     document.getElementById("libraryForm").addEventListener("submit", addLibrary);
-   // FetchStudents()
+    FetchStudents()
     FetchLibrary()
 }
 
@@ -63,23 +63,23 @@ async function FetchLibrary() {
 
         tableBody.innerHTML = '';
 
-        const students = await response.json();
+        const books = await response.json();
 
-        students.forEach(student => {
+        books.forEach(book => {
 
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${student.id}</td>
-                <td>${student.name}</td>
-                <td>${student.email}</td>
-                <td>${student.age}</td>
-                <td>${student.course}</td>`
+                <td>${book.id}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.year}</td>
+                <td>${book.genre}</td>`
             tableBody.appendChild(row);
 
         });
 
 
-        console.log({ students });
+        console.log({ books });
 
     } catch (error) {
 

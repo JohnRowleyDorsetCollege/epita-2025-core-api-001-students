@@ -22,31 +22,25 @@ namespace epita_2025_core_api_001_students.Controllers
         public IActionResult Get()
         {
 
-            return Ok(GetStudents());
+            return Ok(GetLibrary());
 
         }
 
         [HttpPost]
         
-        public async Task<IActionResult> Post([FromBody] Student student)
+        public async Task<IActionResult> Post([FromBody] Book book)
         {
 
-            _context.Students.Add(student);
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
-            return Ok(GetStudents());
+            return Ok(GetLibrary());
         }
 
-        private List<Student> GetStudents()
+        private List<Book> GetLibrary()
         {
 
-            return _context.Students.ToList();
-    //        return new List<Student>()
-    //{
-    //            new Student() { Id = 1, Name = "Johnx", Email = "john2@test.com", Age = 20, Course = "Computer Science" },
-    //            new Student() { Id = 2, Name = "Janex", Email = "john2@test.com", Age = 21, Course = "Maths" }, 
-    //            new Student() { Id = 3, Name = "Doex", Email = "john2@test.com", Age = 22, Course = "History" }
-
-            //};
+            return _context.Books.ToList();
+    //     
         }
     }
 }

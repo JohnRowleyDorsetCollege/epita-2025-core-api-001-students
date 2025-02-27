@@ -4,23 +4,23 @@
       async function addLibrary(event) {
         event.preventDefault(); // Prevent form from refreshing page
 
-        const name = document.getElementById("name").value.trim();
-        const age = parseInt(document.getElementById("age").value, 10);
-        const course = document.getElementById("course").value.trim();
-        const email = document.getElementById("email").value.trim();
+        const author = document.getElementById("author").value.trim();
+        const year = parseInt(document.getElementById("year").value, 10);
+        const genre = document.getElementById("genre").value.trim();
+        const title = document.getElementById("title").value.trim();
 
-        if (!name || !age || !course) {
-            alert("Please fill in all fields.");
-            return;
-        }
+        // if (!name || !age || !course) {
+        //     alert("Please fill in all fields.");
+        //     return;
+        // }
 
-        const newStudent = { name, age, course, email };
+        const newBook = { author, title, genre, year };
 
         try {
             const response = await fetch(apiLibraryUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newStudent)
+                body: JSON.stringify(newBook)
             });
 
             if (!response.ok) {
@@ -30,6 +30,6 @@
             document.getElementById("libraryForm").reset(); // Clear form
             FetchLibrary(); // Refresh student list
         } catch (error) {
-            console.error("Error adding student:", error);
+            console.error("Error adding book:", error);
         }
     }
